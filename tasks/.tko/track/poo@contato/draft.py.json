@@ -1,0 +1,24 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-25_13-41-33",
+            "content": "@@ -506,153 +506,13 @@\n ame%0A\n-%0A    def addName(self);%0A        if self.fones is not None:%0A            self.fones.apendd.list(Contact)%0A        else:%0A            return default = %22%22\n+        \n %0A\n",
+            "lines": "28"
+        },
+        {
+            "label": "2025-11-25_13-49-48",
+            "content": "@@ -590,16 +590,21 @@\n s.apendd\n+.list\n (Contact\n@@ -642,23 +642,17 @@\n urn \n-%22%22%0A%0A    def remove\n+default = %22%22\n %0A\n",
+            "lines": "33"
+        },
+        {
+            "label": "2025-11-25_14-05-26",
+            "content": "@@ -641,152 +641,8 @@\n %22%22%0A%0A\n-    def inserirTelefone(self, label: str):%0A        self.name.apendd(label)%0A        print(f%22%7Bself.name%7D: %7Bself.fones%7D, %7Blabel%7D: %7Bself.number%7D%22)%0A%0A\n     \n",
+            "lines": "35"
+        },
+        {
+            "label": "2025-11-25_14-21-15",
+            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.id = id\n        self.number = number\n        self.valid: bool\n\n    def getId(self):\n        return self.id\n\n    def getNumber(self):\n        return self.number\n\n    def __str__(self):\n\n\n\nclass Contact:\n    def __init__(self, name: str):\n        self.favorited: bool = False\n        self.fones: list(Fone) = fones\n        self.name = name\n\n    def getFones(self):\n        return self.fones\n\n    def getName(self):\n        return self.name\n\n    def addName(self);\n        if self.fones is not None:\n            self.fones.apendd(Contact)\n        else:\n            return \"\"\n\n    def inserirTelefone(self, label: str):\n        self.name.apendd(label)\n        print(f\"{self.name}: {self.fones}, {label}: {self.number}\")\n\n    def remove\n",
+            "lines": "39"
+        }
+    ]
+}
