@@ -17,7 +17,22 @@
         },
         {
             "label": "2025-11-25_14-21-15",
-            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.id = id\n        self.number = number\n        self.valid: bool\n\n    def getId(self):\n        return self.id\n\n    def getNumber(self):\n        return self.number\n\n    def __str__(self):\n\n\n\nclass Contact:\n    def __init__(self, name: str):\n        self.favorited: bool = False\n        self.fones: list(Fone) = fones\n        self.name = name\n\n    def getFones(self):\n        return self.fones\n\n    def getName(self):\n        return self.name\n\n    def addName(self);\n        if self.fones is not None:\n            self.fones.apendd(Contact)\n        else:\n            return \"\"\n\n    def inserirTelefone(self, label: str):\n        self.name.apendd(label)\n        print(f\"{self.name}: {self.fones}, {label}: {self.number}\")\n\n    def remove\n",
+            "content": "@@ -48,20 +48,8 @@\n ber:\n- str, label:\n  str\n@@ -118,20 +118,18 @@\n elf.\n-label = labe\n+valid: boo\n l%0A%0A \n@@ -252,53 +252,9 @@\n f):%0A\n-        return f%22%7Bself.label%7D: %7Bself.number%7D%22\n+%0A\n %0A%0Acl\n@@ -518,29 +518,17 @@\n  add\n-Fon\n+Nam\n e(self\n-, fone: Fone\n );%0A \n@@ -590,17 +590,20 @@\n s.ap\n-p\n end\n-(fone\n+d(Contact\n )%0A  \n",
+            "lines": "39"
+        },
+        {
+            "label": "2025-11-26_13-21-17",
+            "content": "@@ -363,33 +363,8 @@\n r):%0A\n-        self.name = name%0A\n     \n@@ -433,10 +433,38 @@\n ) = \n-%5B%5D\n+fones%0A        self.name = name\n %0A%0A  \n@@ -703,23 +703,16 @@\n turn %22%22%0A\n-       \n %0A    def\n@@ -716,161 +716,155 @@\n def \n-removeFone(self, valor: int):%0A        if 0 %3C= valor %3C len(self.fones):%0A            self.fones.pop(valor)%0A        else:%0A            print(%22indice inv%C3%A1lido%22)%0A\n+inserirTelefone(self, label: str):%0A        self.name.apendd(label)%0A        print(f%22%7Bself.name%7D: %7Bself.fones%7D, %7Blabel%7D: %7Bself.number%7D%22)%0A%0A    def remove\n %0A\n",
+            "lines": "38"
+        },
+        {
+            "label": "2025-11-26_13-31-00",
+            "content": "@@ -44,23 +44,35 @@\n  number:\n+ str, label:\n  str):%0A\n-\n         \n@@ -108,24 +108,51 @@\n ber = number\n+%0A        self.label = label\n %0A%0A    def ge\n@@ -285,18 +285,21 @@\n f%22%7Bself.\n-id\n+label\n %7D: %7Bself\n@@ -605,31 +605,106 @@\n     \n-self.fones.append(fone)\n+if self.fones is not None:%0A            self.fones.append(fone)%0A        else:%0A            return %22%22\n %0A   \n@@ -827,32 +827,32 @@\n )%0A        else:%0A\n+\n             prin\n@@ -876,68 +876,5 @@\n o%22)%0A\n-    %0A    def ifFavorited(self):%0A        return self.favorited%0A%0A\n %0A\n",
+            "lines": "39"
+        },
+        {
+            "label": "2025-11-26_13-50-19",
+            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.id = id\n        self.number = number\n\n    def getId(self):\n        return self.id\n\n    def getNumber(self):\n        return self.number\n\n    def __str__(self):\n        return f\"{self.id}: {self.number}\"\n\nclass Contact:\n    def __init__(self, name: str):\n        self.name = name\n        self.favorited: bool = False\n        self.fones: list(Fone) = []\n\n    def getFones(self):\n        return self.fones\n\n    def getName(self):\n        return self.name\n\n    def addFone(self, fone: Fone);\n        self.fones.append(fone)\n       \n    def removeFone(self, valor: int):\n        if 0 <= valor < len(self.fones):\n            self.fones.pop(valor)\n        else:\n            print(\"indice inv\u00e1lido\")\n    \n    def ifFavorited(self):\n        return self.favorited\n\n\n",
             "lines": "39"
         }
     ]

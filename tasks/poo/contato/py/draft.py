@@ -2,7 +2,6 @@ class Fone:
     def __init__(self, id: str, number: str):
         self.id = id
         self.number = number
-        self.valid: bool
 
     def getId(self):
         return self.id
@@ -11,14 +10,13 @@ class Fone:
         return self.number
 
     def __str__(self):
-
-
+        return f"{self.id}: {self.number}"
 
 class Contact:
     def __init__(self, name: str):
-        self.favorited: bool = False
-        self.fones: list(Fone) = fones
         self.name = name
+        self.favorited: bool = False
+        self.fones: list(Fone) = []
 
     def getFones(self):
         return self.fones
@@ -26,14 +24,16 @@ class Contact:
     def getName(self):
         return self.name
 
-    def addName(self);
-        if self.fones is not None:
-            self.fones.apendd(Contact)
+    def addFone(self, fone: Fone);
+        self.fones.append(fone)
+       
+    def removeFone(self, valor: int):
+        if 0 <= valor < len(self.fones):
+            self.fones.pop(valor)
         else:
-            return ""
+            print("indice inválido")
+    
+    def ifFavorited(self):
+        return self.favorited
 
-    def inserirTelefone(self, label: str):
-        self.name.apendd(label)
-        print(f"{self.name}: {self.fones}, {label}: {self.number}")
 
-    def remove
