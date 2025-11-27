@@ -7,3 +7,5 @@
 2025-11-26 13:50:21, MOVE, v:1, k:poo@contato, mode:BACK
 2025-11-26 13:53:52, MOVE, v:1, k:poo@contato, mode:PICK
 2025-11-26 13:53:56, MOVE, v:1, k:poo@contato, mode:BACK
+2025-11-26 23:12:04, MOVE, v:1, k:poo@contato, mode:PICK
+2025-11-26 23:12:06, EXEC, v:1, k:poo@contato, mode:FULL, rate:0
