@@ -1,4 +1,6 @@
 class Fone:
+    validos = "0123456789()."
+
     def __init__(self, id: str, number: str):
         self.id = id
         self.number = number
@@ -9,15 +11,15 @@ class Fone:
     def getNumber(self):
         return self.number
 
-    validos = "0123456789()."
     def validar(self, number):
         for n in number:
-            if n not in validos:
+            if n not in self.validos: 
                 return False
         return True
 
     def __str__(self):
         return f"{self.id}: {self.number}"
+
 
 class Contact:
     def __init__(self, name: str):
@@ -32,8 +34,11 @@ class Contact:
         return self.name
 
     def addFone(self, fone: Fone):
-        self.fones.append(fone)
-       
+        if fone.validar(fone.number): 
+            self.fones.append(fone)
+        else:
+            print("numero invalido")
+
     def removeFone(self, valor: int):
         if 0 <= valor < len(self.fones):
             self.fones.pop(valor)
@@ -71,17 +76,34 @@ def main():
         if not line:
             continue
 
-        args = line()
+        args = line.split()
 
-        if args[0] == "$init":
+        # Comando init, add, rm, tfav, end → ecoa $ antes
+        if args[0] in ["init", "add", "rm", "tfav", "end"]:
+            print(f"${line}")
+
+        if args[0] == "init":
             contact = Contact(args[1])
-        elif args[0] == "show":
             print(contact)
+
+        elif args[0] == "show":
+            print(contact)  # NÃO imprime $show
+
         elif args[0] == "add":
-            contact.addFone(args[1], args[2])
+            contact.addFone(Fone(args[1], args[2]))
+            print(contact)
+
         elif args[0] == "rm":
             contact.removeFone(int(args[1]))
+            print(contact)
+
         elif args[0] == "tfav":
-            contact.toggleFavorited()
+            if contact.favorited:
+                contact.desfavoritar()
+            else:
+                contact.ifFavorited()
+            print(contact)
+
         elif args[0] == "end":
+            print(f"${line}")
             break
