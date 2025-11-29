@@ -142,8 +142,148 @@
         },
         {
             "label": "2025-11-28_01-00-39",
-            "content": "class Fone:\n    validos = \"0123456789().\"\n\n    def __init__(self, id: str, number: str):\n        self.id = id\n        self.number = number\n\n    def getId(self):\n        return self.id\n\n    def getNumber(self):\n        return self.number\n\n    def validar(self, number):\n        for n in number:\n            if n not in self.validos: \n                return False\n        return True\n\n    def __str__(self):\n        return f\"{self.id}: {self.number}\"\n\n\nclass Contact:\n    def __init__(self, name: str):\n        self.name = name\n        self.favorited: bool = False\n        self.fones: list[Fone] = []\n\n    def getFones(self):\n        return self.fones\n\n    def getName(self):\n        return self.name\n\n    def addFone(self, fone: Fone):\n        if fone.validar(fone.number): \n            self.fones.append(fone)\n        else:\n            print(\"numero invalido\")\n\n    def removeFone(self, valor: int):\n        if 0 <= valor < len(self.fones):\n            self.fones.pop(valor)\n        else:\n            print(\"indice inv\u00e1lido\")\n    \n    def ifFavorited(self):\n        self.favorited = True\n    \n    def desfavoritar(self):\n        self.favorited = False\n\n    def __str__(self):\n        if self.favorited:\n            prefixo = \"@\"\n        else:\n            prefixo = \"-\"\n        fones_str = \"\"\n        for i in range(len(self.fones)):\n            fone = self.fones[i]\n            fones_str += f\"{i}:{fone.id}:{fone.number}\"\n            if i < len(self.fones) - 1:\n                fones_str += \", \"\n        return f\"{prefixo} {self.name} [{fones_str}]\"\n\ndef main():\n    contact = None\n\n    while True:\n        try:\n            line = input()\n        except EOFError:\n            break\n\n        if not line:\n            continue\n\n        args = line.split()\n\n        # Comando init, add, rm, tfav, end \u2192 ecoa $ antes\n        if args[0] in [\"init\", \"add\", \"rm\", \"tfav\", \"end\"]:\n            print(f\"${line}\")\n\n        if args[0] == \"init\":\n            contact = Contact(args[1])\n            print(contact)\n\n        elif args[0] == \"show\":\n            print(contact)  # N\u00c3O imprime $show\n\n        elif args[0] == \"add\":\n            contact.addFone(Fone(args[1], args[2]))\n            print(contact)\n\n        elif args[0] == \"rm\":\n            contact.removeFone(int(args[1]))\n            print(contact)\n\n        elif args[0] == \"tfav\":\n            if contact.favorited:\n                contact.desfavoritar()\n            else:\n                contact.ifFavorited()\n            print(contact)\n\n        elif args[0] == \"end\":\n            print(f\"${line}\")\n            break\n",
+            "content": "@@ -4,16 +4,46 @@\n ss Fone:\n+%0A    validos = %220123456789().%22\n %0A%0A    de\n@@ -266,42 +266,8 @@\n r):%0A\n-        validos = %220123456789().%22%0A\n     \n@@ -1748,16 +1748,74 @@\n plit()%0A%0A\n+        # Comando init, add, rm, tfav, end %E2%86%92 ecoa $ antes%0A\n         \n@@ -2053,16 +2053,36 @@\n ontact) \n+ # N%C3%83O imprime $show\n %0A%0A      \n",
             "lines": "109"
+        },
+        {
+            "label": "2025-11-29_15-58-36",
+            "content": "@@ -2483,14 +2483,8 @@\n   break%0A\n-main()\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_15-58-55",
+            "content": "@@ -447,16 +447,17 @@\n mber%7D%22%0A%0A\n+%0A\n class Co\n@@ -1727,34 +1727,8 @@\n ue%0A%0A\n-        print(f%22$%7Bline%7D%22)%0A\n     \n",
+            "lines": "109"
+        },
+        {
+            "label": "2025-11-29_16-03-05",
+            "content": "@@ -1726,24 +1726,41 @@\n ue%0A%0A        \n+print(f%22$%7Bline%7D%22)\n %0A        arg\n",
+            "lines": "109"
+        },
+        {
+            "label": "2025-11-29_16-03-41",
+            "content": "@@ -263,17 +263,16 @@\n 456789()\n--\n .%22%0A     \n@@ -1718,24 +1718,33 @@\n   continue%0A%0A\n+        %0A\n         args\n",
+            "lines": "109"
+        },
+        {
+            "label": "2025-11-29_16-04-15",
+            "content": "@@ -225,17 +225,17 @@\n self\n-) -%3E bool\n+, number)\n :%0A  \n@@ -284,21 +284,16 @@\n or n in \n-self.\n number:%0A\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-05-16",
+            "content": "@@ -118,31 +118,24 @@\n  getId(self)\n- -%3E str\n :%0A        re\n@@ -175,15 +175,8 @@\n elf)\n- -%3E str\n :%0A  \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-05-52",
+            "content": "@@ -450,16 +450,17 @@\n elf.id%7D:\n+ \n %7Bself.nu\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-06-15",
+            "content": "@@ -555,32 +555,38 @@\n   self.favorited\n+: bool\n  = False%0A       \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-06-37",
+            "content": "@@ -635,16 +635,8 @@\n elf)\n- -%3E list\n :%0A  \n@@ -677,31 +677,24 @@\n etName(self)\n- -%3E str\n :%0A        re\n@@ -746,16 +746,8 @@\n one)\n- -%3E None\n :%0A  \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-07-43",
+            "content": "@@ -879,21 +879,22 @@\n nt(%22\n-fail:\n+numero\n  invalid\n  num\n@@ -889,23 +889,17 @@\n  invalid\n- number\n+o\n %22)%0A%0A    \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-08-17",
+            "content": "@@ -771,40 +771,8 @@\n ne:%0A\n-        fone = Fone(id, number)%0A\n     \n@@ -935,24 +935,16 @@\n or: int)\n- -%3E None\n :%0A      \n@@ -1045,22 +1045,16 @@\n  print(%22\n-fail: \n indice i\n@@ -1055,17 +1055,17 @@\n dice inv\n-a\n+%C3%A1\n lido%22)%0A \n@@ -1093,23 +1093,16 @@\n ed(self)\n--%3E None\n :%0A      \n@@ -1124,26 +1124,12 @@\n d = \n-not self.favorited\n+True\n %0A   \n@@ -1152,32 +1152,24 @@\n oritar(self)\n- -%3E bool\n :%0A        se\n@@ -1187,78 +1187,12 @@\n d = \n-True%0A%0A    def setName(self, name:str) -%3E None:%0A        self.name = nam\n+Fals\n e%0A%0A \n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-29_16-14-20",
+            "content": "@@ -1365,18 +1365,8 @@\n     \n- fav = %22@%22\n  if \n@@ -1383,75 +1383,302 @@\n ited\n- else %22-%22%0A        fones_str =%22, %22. join(str(f) for f in self.fones)\n+:%0A            prefixo = %22@%22%0A        else:%0A            prefixo = %22-%22%0A        fones_str = %22%22%0A        for i in range(len(self.fones)):%0A            fone = self.fones%5Bi%5D%0A            fones_str += f%22%7Bi%7D:%7Bfone.id%7D:%7Bfone.number%7D%22%0A            if i %3C len(self.fones) - 1:%0A                fones_str += %22, %22\n %0A   \n@@ -1692,19 +1692,23 @@\n turn f%22%7B\n-fav\n+prefixo\n %7D %7Bself.\n",
+            "lines": "112"
+        },
+        {
+            "label": "2025-11-29_16-17-23",
+            "content": "@@ -1537,25 +1537,8 @@\n ct =\n- Contact %7C None =\n  Non\n",
+            "lines": "104"
+        },
+        {
+            "label": "2025-11-29_16-18-08",
+            "content": "@@ -1573,16 +1573,33 @@\n e True:%0A\n+        try:%0A    \n         \n@@ -1625,52 +1625,204 @@\n     \n-print(f%22$%7Bline%7D%22)%0A        args = line.split(\n+except EOFError:%0A            break%0A%0A        if not line:%0A            continue%0A%0A        args = line.split()%0A%0A        if args%5B0%5D in %5B%22init%22, %22add%22, %22rm%22, %22tfav%22, %22end%22%5D:%0A            print(f%22$%7Bline%7D%22\n )%0A%0A \n@@ -1888,16 +1888,43 @@\n args%5B1%5D)\n+%0A            print(contact)\n %0A%0A      \n@@ -2060,16 +2060,43 @@\n rgs%5B2%5D))\n+%0A            print(contact)\n %0A%0A      \n@@ -2163,16 +2163,43 @@\n rgs%5B1%5D))\n+%0A            print(contact)\n %0A%0A      \n@@ -2408,24 +2408,54 @@\n %5D == %22end%22:%0A\n+            print(f%22$%7Bline%7D%22)%0A\n             \n",
+            "lines": "104"
+        },
+        {
+            "label": "2025-11-29_16-19-41",
+            "content": "@@ -1626,17 +1626,8 @@\n %7D%22)%0A\n-        %0A\n     \n@@ -1650,24 +1650,25 @@\n split()%0A\n+%0A\n         \n if args%5B\n@@ -1663,58 +1663,8 @@\n     \n-if args%5B0%5D == %22end%22:%0A            break%0A%0A        el\n if a\n@@ -2131,14 +2131,63 @@\n ntact)%0A%0A\n+        elif args%5B0%5D == %22end%22:%0A            break%0A\n main()\n",
+            "lines": "91"
+        },
+        {
+            "label": "2025-11-29_16-20-27",
+            "content": "@@ -1899,16 +1899,21 @@\n addFone(\n+Fone(\n args%5B1%5D,\n@@ -1921,16 +1921,17 @@\n args%5B2%5D)\n+)\n %0A%0A      \n",
+            "lines": "92"
+        },
+        {
+            "label": "2025-11-29_16-21-15",
+            "content": "@@ -2041,29 +2041,151 @@\n     \n-contact.desfavoritar(\n+ if contact.favorited:%0A                contact.desfavoritar()%0A            else:%0A                contact.ifFavorited()%0A            print(contact\n )%0A%0Am\n",
+            "lines": "92"
+        },
+        {
+            "label": "2025-11-29_16-22-50",
+            "content": "@@ -1531,17 +1531,18 @@\n  contact\n-:\n+ =\n  Contact\n",
+            "lines": "88"
+        },
+        {
+            "label": "2025-11-29_16-23-22",
+            "content": "@@ -822,16 +822,29 @@\n .validar\n+(fone.number)\n : %0A     \n@@ -2059,14 +2059,15 @@\n ritar()%0A\n+%0A\n main()\n",
+            "lines": "88"
+        },
+        {
+            "label": "2025-11-29_16-25-24",
+            "content": "@@ -1129,20 +1129,20 @@\n self)-%3E \n-bool\n+None\n :%0A      \n@@ -1210,28 +1210,28 @@\n ar(self) -%3E \n-None\n+bool\n :%0A        se\n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-11-29_16-26-22",
+            "content": "@@ -1143,27 +1143,51 @@\n         \n-return True\n+self.favorited = not self.favorited\n %0A    %0A  \n@@ -1224,25 +1224,24 @@\n ne:%0A        \n- \n self.favorit\n@@ -1245,34 +1245,20 @@\n rited = \n-not self.favorited\n+True\n %0A%0A    de\n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-11-29_16-27-10",
+            "content": "@@ -2022,25 +2022,28 @@\n contact.\n+des\n favorit\n-ed\n+ar\n ()%0Amain(\n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-11-29_16-29-05",
+            "content": "@@ -2026,11 +2026,9 @@\n act.\n-isF\n+f\n avor\n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-11-29_16-29-43",
+            "content": "@@ -1,24 +1,25 @@\n class Fone:%0A\n+%0A\n     def __in\n@@ -101,17 +101,128 @@\n = number\n- \n+%0A%0A    def getId(self) -%3E str:%0A        return self.id%0A%0A    def getNumber(self) -%3E str:%0A        return self.number\n %0A%0A    de\n@@ -404,120 +404,8 @@\n ue%0A%0A\n-    def getId(self) -%3E str:%0A        return self.id%0A%0A    def getNumber(self) -%3E str:%0A        return self.number%0A%0A\n     \n@@ -417,31 +417,24 @@\n _str__(self)\n- -%3E str\n :%0A        re\n@@ -1122,25 +1122,24 @@\n orited(self)\n- \n -%3E bool:%0A   \n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-11-29_16-31-41",
+            "content": "@@ -616,16 +616,131 @@\n %5D = %5B%5D%0A%0A\n+    def getFones(self) -%3E list:%0A        return self.fones%0A%0A    def getName(self) -%3E str:%0A        return self.name%0A%0A\n     def \n@@ -1103,17 +1103,21 @@\n alido%22)%0A\n+    \n %0A\n-\n     def \n@@ -1155,33 +1155,37 @@\n     return True%0A\n+    \n %0A\n-\n     def desfavor\n@@ -1196,32 +1196,33 @@\n (self) -%3E None:%0A\n+ \n         self.fav\n@@ -1254,124 +1254,8 @@\n ed%0A%0A\n-%0A    def getFones(self) -%3E list:%0A        return self.fones%0A%0A    def getName(self) -%3E str:%0A        return self.name%0A%0A\n     \n",
+            "lines": "86"
+        },
+        {
+            "label": "2025-11-29_16-33-34",
+            "content": "@@ -1126,16 +1126,17 @@\n orited%0A%0A\n+%0A\n     def \n@@ -1533,16 +1533,17 @@\n  = None%0A\n+%0A\n     whil\n@@ -1599,16 +1599,25 @@\n line%7D%22)%0A\n+        %0A\n         \n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-11-29_16-35-20",
+            "content": "@@ -227,16 +227,21 @@\n  in \n+self.\n validos:\n %0A   \n@@ -236,16 +236,17 @@\n validos:\n+ \n %0A       \n@@ -288,16 +288,128 @@\n n True%0A%0A\n+    def getId(self) -%3E str:%0A        return self.id%0A%0A    def getNumber(self) -%3E str:%0A        return self.number%0A%0A\n     def \n@@ -638,36 +638,26 @@\n e(self, \n-id: str, number: str\n+fone: Fone\n ) -%3E Non\n@@ -714,19 +714,18 @@\n .validar\n-()\n :\n+ \n %0A       \n@@ -835,21 +835,21 @@\n e(self, \n-index\n+valor\n : int) -\n@@ -872,21 +872,21 @@\n if 0 %3C= \n-index\n+valor\n  %3C len(s\n@@ -928,13 +928,13 @@\n pop(\n-index\n+valor\n )%0A  \n@@ -998,17 +998,17 @@\n    def i\n-s\n+f\n Favorite\n@@ -1043,41 +1043,34 @@\n urn \n-self.favorited%0A%0A    def toggleFav\n+True%0A%0A    def desfavoritar\n (sel\n@@ -1126,16 +1126,198 @@\n orited%0A%0A\n+    def getFones(self) -%3E list:%0A        return self.fones%0A%0A    def getName(self) -%3E str:%0A        return self.name%0A%0A    def setName(self, name:str) -%3E None:%0A        self.name = name%0A%0A\n     def \n@@ -1399,14 +1399,14 @@\n tr =\n- \n %22, %22.\n+ \n join\n@@ -1532,17 +1532,16 @@\n  = None%0A\n-%0A\n     whil\n@@ -1625,17 +1625,16 @@\n split()%0A\n-%0A\n         \n@@ -1803,16 +1803,17 @@\n contact)\n+ \n %0A%0A      \n@@ -2015,24 +2015,24 @@\n act.\n-toggleFav\n+isFavorited\n ()%0A\n-%0A\n main()\n-%0A\n",
+            "lines": "84"
+        },
+        {
+            "label": "2025-11-29_16-37-55",
+            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.id = id\n        self.number = number \n\n    def validar(self) -> bool:\n        validos = \"0123456789()-.\"\n        for n in self.number:\n            if n not in validos:\n                return False\n        return True\n\n    def __str__(self) -> str:\n        return f\"{self.id}:{self.number}\"\n\nclass Contact:\n    def __init__(self, name: str):\n        self.name = name\n        self.favorited = False\n        self.fones: list[Fone] = []\n\n    def addFone(self, id: str, number: str) -> None:\n        fone = Fone(id, number)\n        if fone.validar():\n            self.fones.append(fone)\n        else:\n            print(\"fail: invalid number\")\n\n    def removeFone(self, index: int) -> None:\n        if 0 <= index < len(self.fones):\n            self.fones.pop(index)\n        else:\n            print(\"fail: indice invalido\")\n\n    def isFavorited(self) -> bool:\n        return self.favorited\n\n    def toggleFav(self) -> None:\n        self.favorited = not self.favorited\n\n    def __str__(self):\n        fav = \"@\" if self.favorited else \"-\"\n        fones_str = \", \".join(str(f) for f in self.fones)\n        return f\"{fav} {self.name} [{fones_str}]\"\n\ndef main():\n    contact: Contact | None = None\n\n    while True:\n        line = input()\n        print(f\"${line}\")\n        args = line.split()\n\n        if args[0] == \"end\":\n            break\n\n        elif args[0] == \"init\":\n            contact = Contact(args[1])\n\n        elif args[0] == \"show\":\n            print(contact)\n\n        elif args[0] == \"add\":\n            contact.addFone(args[1], args[2])\n\n        elif args[0] == \"rm\":\n            contact.removeFone(int(args[1]))\n\n        elif args[0] == \"tfav\":\n           contact.toggleFav()\n\nmain()\n",
+            "lines": "72"
         }
     ]
 }
