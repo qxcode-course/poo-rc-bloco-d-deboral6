@@ -44,7 +44,7 @@ class Contact:
         return f"{fav} {self.name} [{fones_str}]"
     
 class Agenda:
-    def __init__init(self):
+    def __init__(self):
         self.contacts: list[Contact] = []
 
     def addContact(self, contacts: Contact):
@@ -59,32 +59,51 @@ class Agenda:
                 return i
         return -1
 
-    def addContact(self, name: str, fones: list[tuple[str, str]]):
+    def addContact(self, name: str, fones: list[tuple[str, str]]): 
         pos = self.findPosByName(name)
 
-        if pos != 1:
-            contato = self.contacts9[pos]
+        if pos != -1:
+            contato = self.contacts[pos]
 
         else:
             contato = Contact(name)
             self.contacts.append(contato)
 
-        for fone  in fones:
-            contato.addFone(fone.id, fone.number):
-        
-        self.contacts.sort(key = lambda c: name.lower())
+        for id_, num in fones:
+            contato.addFone(id_, num)
+        self.contacts.sort(key=lambda c: c.name.lower()) 
+ 
+    def getContact(self, name: str) -> Contact | None:
+        pos = self.findPosByName(name)
+        if pos == -1:
+            return None
+        return self.contacts[pos]
 
+    def rmContact(self, name: str):
+        pos = self.findPosByName(name)
+        if pos != -1:
+            self.contacts.pop(pos)    
+        else: 
+            print("fail: contato inexistente")
 
+    def search(self, name: str) -> list[Contact]:
+        return [c for c in self.contacts if pattern in str(c)] 
 
+    def getFavorited(self) -> list[Contact]:
+        favs = []
+        for contato in self.contacts:
+            if contato.isFavorited():
+                favs.append(contato)
+        return favs
 
-    
+    def getContacts(self) -> list[Contact]:
+        return self.contacts
 
-
-
-
+    def __str__(self) -> str:
+        return "\n".join(str(c) for c in self.contacts)
 
 def main():
-    contact: Contact | None = None
+    agenda = Agenda()
 
     while True:
         line = input()
@@ -95,18 +114,32 @@ def main():
             break
 
         elif args[0] == "init":
-            contact = Contact(args[1])
+            agenda = Agenda()
 
         elif args[0] == "show":
-            print(contact)
+            print(agenda)
 
         elif args[0] == "add":
-            contact.addFone(args[1], args[2])
+            name = args[1]
+            fones = []
+            for par in args[2:]:
+                id_, num = par.split(":")
+                fones.append((id_, num))
+            agenda.addContact(name, fones)
 
         elif args[0] == "rm":
-            contact.removeFone(int(args[1]))
+            agenda.rmContact(args[1])
+
+        elif args[0] == "search":
+            result = agenda.search(args[1])
+            for c in result:
+                print(c)
 
         elif args[0] == "tfav":
-           contact.toggleFav()
+            contato = agenda.getContact(args[1])
+            if contato:
+                contato.toggleFav()
+            else:
+                print("fail: contato inexistente")
 
 main()
