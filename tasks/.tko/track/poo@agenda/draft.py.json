@@ -1,0 +1,29 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-29_16-41-45",
+            "content": "@@ -1206,335 +1206,8 @@\n %7D%5D%22%0A\n-    %0Aclass Agenda:%0A    def __init__init(self):%0A        self.contacts: list%5BContact%5D = %5B%5D%0A%0A    def addContact(self, contacts: Contact):%0A        for c in contacts:%0A            if self.name == self.contacts:%0A                self.contacts.append(contact)%0A                self.contacts.sort(key = lambda x: x.name.lower())%0A    %0A%0A%0A%0A%0A\n %0Adef\n",
+            "lines": "72"
+        },
+        {
+            "label": "2025-12-01_00-32-16",
+            "content": "@@ -1524,177 +1524,8 @@\n ())%0A\n-%0A    def findPosByName(self, name: str) -%3E int:%0A        for i, c in enumerate(self.contacts):%0A            if c.name == name:%0A                return i%0A        return -1%0A%0A\n     \n",
+            "lines": "87"
+        },
+        {
+            "label": "2025-12-01_00-47-50",
+            "content": "@@ -1693,116 +1693,8 @@\n -1%0A%0A\n-    def addContact(self, name: str, fones: list%5Btuple%5Bstr, str%5D%5D):%0A        pos = self.findPosByName(name)%0A%0A%0A\n     \n",
+            "lines": "94"
+        },
+        {
+            "label": "2025-12-01_00-53-36",
+            "content": "@@ -1800,313 +1800,8 @@\n e)%0A%0A\n-        if pos != 1:%0A            contato = self.contacts9%5Bpos%5D%0A%0A        else:%0A            contato = Contact(name)%0A            self.contacts.append(contato)%0A%0A        for fone  in fones:%0A            contato.addFone(fone.id, fone.number):%0A        %0A        self.contacts.sort(key = lambda c: name.lower())%0A%0A%0A%0A\n %0A   \n",
+            "lines": "98"
+        },
+        {
+            "label": "2025-12-01_01-01-37",
+            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.id = id\n        self.number = number \n\n    def validar(self) -> bool:\n        validos = \"0123456789()-.\"\n        for n in self.number:\n            if n not in validos:\n                return False\n        return True\n\n    def __str__(self) -> str:\n        return f\"{self.id}:{self.number}\"\n\nclass Contact:\n    def __init__(self, name: str):\n        self.name = name\n        self.favorited = False\n        self.fones: list[Fone] = []\n\n    def addFone(self, id: str, number: str) -> None:\n        fone = Fone(id, number)\n        if fone.validar():\n            self.fones.append(fone)\n        else:\n            print(\"fail: invalid number\")\n\n    def removeFone(self, index: int) -> None:\n        if 0 <= index < len(self.fones):\n            self.fones.pop(index)\n        else:\n            print(\"fail: indice invalido\")\n\n    def isFavorited(self) -> bool:\n        return self.favorited\n\n    def toggleFav(self) -> None:\n        self.favorited = not self.favorited\n\n    def __str__(self):\n        fav = \"@\" if self.favorited else \"-\"\n        fones_str = \", \".join(str(f) for f in self.fones)\n        return f\"{fav} {self.name} [{fones_str}]\"\n    \nclass Agenda:\n    def __init__init(self):\n        self.contacts: list[Contact] = []\n\n    def addContact(self, contacts: Contact):\n        for c in contacts:\n            if self.name == self.contacts:\n                self.contacts.append(contact)\n                self.contacts.sort(key = lambda x: x.name.lower())\n\n    def findPosByName(self, name: str) -> int:\n        for i, c in enumerate(self.contacts):\n            if c.name == name:\n                return i\n        return -1\n\n    def addContact(self, name: str, fones: list[tuple[str, str]]):\n        pos = self.findPosByName(name)\n\n        if pos != 1:\n            contato = self.contacts9[pos]\n\n        else:\n            contato = Contact(name)\n            self.contacts.append(contato)\n\n        for fone  in fones:\n            contato.addFone(fone.id, fone.number):\n        \n        self.contacts.sort(key = lambda c: name.lower())\n\n\n\n\n    \n\n\n\n\n\ndef main():\n    contact: Contact | None = None\n\n    while True:\n        line = input()\n        print(f\"${line}\")\n        args = line.split()\n\n        if args[0] == \"end\":\n            break\n\n        elif args[0] == \"init\":\n            contact = Contact(args[1])\n\n        elif args[0] == \"show\":\n            print(contact)\n\n        elif args[0] == \"add\":\n            contact.addFone(args[1], args[2])\n\n        elif args[0] == \"rm\":\n            contact.removeFone(int(args[1]))\n\n        elif args[0] == \"tfav\":\n           contact.toggleFav()\n\nmain()\n",
+            "lines": "112"
+        }
+    ]
+}
