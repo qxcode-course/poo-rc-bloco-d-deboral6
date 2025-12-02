@@ -1,0 +1,19 @@
+{
+    "patches": [
+        {
+            "label": "2025-12-02_18-33-32",
+            "content": "@@ -1,776 +0,0 @@\n-class Account:%0A    def __init__(self, acc_number: int):%0A        self.number = acc_number%0A        self.balancer = 0%0A        self.ops = 0%0A        self._add_op(%22opening%22, 0)%0A%0A    def addOp(self, desc, value):%0A        self.balancer += value%0A        self.ops.append(%5Bdesc, value, self.balance%5D)%0A%0A    def deposit(self, value: int):%0A        if value %3C= 0:%0A            self._add_op(%22error%22, value)%0A            return%0A        self._add_op(%22deposit%22, value)%0A    %0A    def withdraw(self, value: int):%0A        if value %3C=0:%0A            self._add_op(%22error%22, -value)%0A            return%0A        self._add_op(%22withdraw%22, -value)%0A%0A    def free(self, value: int):%0A        if value %3C= 0:%0A            self._add_op(%22error%22, -value)%0A            return%0A        self._add_op(%22free%22, -value)%0A        %0A\n",
+            "lines": "0"
+        },
+        {
+            "label": "2025-12-02_19-13-09",
+            "content": "@@ -616,16 +616,17 @@\n    def f\n+r\n ee(self,\n@@ -631,32 +631,32 @@\n f, value: int):%0A\n-\n         if value\n@@ -750,614 +750,27 @@\n p(%22f\n-ee%22, -value)%0A%0A    def reverse(self, index: list%5Bint%5D):%0A        for index in ids:%0A            if 0 %3C= index %3C len(self.ops):%0A                desc, val, bal = self.ops%5Bidx%5D%0A                if desc == fee:%0A                    self._add_op(%22reverse%22, abs(val))%0A%0A    def extract(self, n: int %7CNone = None):%0A        lista = self.ops if n is None else self.ops%5B-n:%5D%0A        out = %5B%5D%0A        for i, op in enumerate(lista):%0A            desc, val, bal = openingout.append(f%22%7Bi%7D: %7Bdesc%7D %7Bval%7D %7Bbal%7D%22)%0A        return %22%5Cn%22.join(out)%0A%0A    def __str__(self):%0A        return f%22account %7Bself.number%7D balance %7Bself.balance%7D%22%0A%0A%0A\n+ree%22, -value)%0A        \n %0A\n",
+            "lines": "29"
+        },
+        {
+            "label": "2025-12-02_19-25-58",
+            "content": "class Account:\n    def __init__(self, acc_number: int):\n        self.number = acc_number\n        self.balancer = 0\n        self.ops = 0\n        self._add_op(\"opening\", 0)\n\n    def addOp(self, desc, value):\n        self.balancer += value\n        self.ops.append([desc, value, self.balance])\n\n    def deposit(self, value: int):\n        if value <= 0:\n            self._add_op(\"error\", value)\n            return\n        self._add_op(\"deposit\", value)\n    \n    def withdraw(self, value: int):\n        if value <=0:\n            self._add_op(\"error\", -value)\n            return\n        self._add_op(\"withdraw\", -value)\n\n    def fee(self, value: int):\n        if value <= 0:\n            self._add_op(\"error\", -value)\n            return\n        self._add_op(\"fee\", -value)\n\n    def reverse(self, index: list[int]):\n        for index in ids:\n            if 0 <= index < len(self.ops):\n                desc, val, bal = self.ops[idx]\n                if desc == fee:\n                    self._add_op(\"reverse\", abs(val))\n\n    def extract(self, n: int |None = None):\n        lista = self.ops if n is None else self.ops[-n:]\n        out = []\n        for i, op in enumerate(lista):\n            desc, val, bal = openingout.append(f\"{i}: {desc} {val} {bal}\")\n        return \"\\n\".join(out)\n\n    def __str__(self):\n        return f\"account {self.number} balance {self.balance}\"\n\n\n\n",
+            "lines": "48"
+        }
+    ]
+}

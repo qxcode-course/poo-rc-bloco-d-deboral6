@@ -47,12 +47,6 @@ class Agenda:
     def __init__(self):
         self.contacts: list[Contact] = []
 
-    def addContact(self, contacts: Contact):
-        for c in contacts:
-            if self.name == self.contacts:
-                self.contacts.append(contact)
-                self.contacts.sort(key = lambda x: x.name.lower())
-
     def findPosByName(self, name: str) -> int:
         for i, c in enumerate(self.contacts):
             if c.name == name:
@@ -86,8 +80,8 @@ class Agenda:
         else: 
             print("fail: contato inexistente")
 
-    def search(self, name: str) -> list[Contact]:
-        return [c for c in self.contacts if pattern in str(c)] 
+    def search(self, pattern: str) -> list[Contact]:
+        return [c for c in self.contacts if pattern in str(c)]
 
     def getFavorited(self) -> list[Contact]:
         favs = []
